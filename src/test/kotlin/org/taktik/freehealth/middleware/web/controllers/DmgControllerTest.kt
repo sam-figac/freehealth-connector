@@ -54,7 +54,7 @@ class DmgControllerTest : EhealthTest() {
         val now = LocalDateTime.now()
 
         val results = getNisses(0).map {
-            val str = this.restTemplate.getForObject("http://localhost:$port/gmd?hcpNihii=11478761004&hcpSsin=$ssin1&hcpFirstName=${"Antoine"}&hcpLastName=${"Baudoux"}&patientSsin=$it&requestDate=${now.minusMonths(25).toInstant(ZoneOffset.UTC).toEpochMilli()}&keystoreId=$keystoreId&tokenId=$tokenId&passPhrase={passPhrase}", String::class.java, passPhrase)
+            val str = this.restTemplate.getForObject("http://localhost:$port/gmd?hcpNihii=$nihii1&hcpSsin=$ssin1&hcpFirstName=${"Antoine"}&hcpLastName=${"Baudoux"}&patientSsin=$it&requestDate=${now.minusMonths(25).toInstant(ZoneOffset.UTC).toEpochMilli()}&keystoreId=$keystoreId&tokenId=$tokenId&passPhrase={passPhrase}", String::class.java, passPhrase)
             val dmgc = gson.fromJson(str, DmgConsultation::class.java)
 
             dmgc
@@ -72,7 +72,7 @@ class DmgControllerTest : EhealthTest() {
         val now = LocalDateTime.now()
 
         val results = getNisses(1).map {
-            val str = this.restTemplate.getForObject("http://localhost:$port/gmd?hcpNihii=11478761004&hcpSsin=$ssin1&hcpFirstName=${"Antoine"}&hcpLastName=${"Baudoux"}&patientSsin=$it&keystoreId=$keystoreId&tokenId=$tokenId&passPhrase=$passPhrase", String::class.java)
+            val str = this.restTemplate.getForObject("http://localhost:$port/gmd?hcpNihii=$nihii1&hcpSsin=$ssin1&hcpFirstName=${"Antoine"}&hcpLastName=${"Baudoux"}&patientSsin=$it&keystoreId=$keystoreId&tokenId=$tokenId&passPhrase=$passPhrase", String::class.java)
             val dmgc = gson.fromJson(str, DmgConsultation::class.java)
 
             dmgc
